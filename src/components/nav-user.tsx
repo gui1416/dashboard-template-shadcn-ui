@@ -7,7 +7,8 @@ import {
   IconNotification,
   IconUserCircle,
 } from "@tabler/icons-react"
-
+import { Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
 import {
   Avatar,
   AvatarFallback,
@@ -39,6 +40,7 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const { theme, setTheme } = useTheme()
 
   return (
     <SidebarMenu>
@@ -95,6 +97,16 @@ export function NavUser({
               <DropdownMenuItem>
                 <IconNotification />
                 Notifications
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => {
+                setTheme(theme === 'dark' ? 'light' : 'dark')
+              }}>
+                {theme === 'dark' ? (
+                  <Sun className="mr-2 h-4 w-4" />
+                ) : (
+                  <Moon className="mr-2 h-4 w-4" />
+                )}
+                Trocar tema
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
